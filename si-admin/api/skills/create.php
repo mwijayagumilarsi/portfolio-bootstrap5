@@ -13,9 +13,9 @@
     $item->full_name = $data->full_name;
     $item->email = $data->email;
     $item->password = $data->password;
-    $item->photo = $data->photo;
     $item->job = $data->job;
     $item->expected_position = $data->expected_position;
+    $item->photo = $data->photo;
     if($item->createUser()){
         echo json_encode('User created successfully.');
     } else{

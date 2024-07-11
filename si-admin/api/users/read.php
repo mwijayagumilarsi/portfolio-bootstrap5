@@ -21,10 +21,10 @@ if(isset($_GET['id'])){
         "id" => $item->id,
         "full_name" => $item->full_name,
         "email" => $item->email,
-        "password" => $item->password,
-        "photo" => $item->photo,
+        "password" => $item->password,,
         "job" => $item->job,
         "expected_position" => $item->expected_position,      
+        "photo" => $item->photo
         );
         http_response_code(200);
         echo json_encode($emp_arr);
@@ -55,9 +55,9 @@ else {
                 "full_name" => $full_name,
                 "email" => $email,
                 "password" => $password,
-                "photo" => $photo,
                 "job" => $job,
                 "expected_position" => $expected_position,
+                "photo" => $photo,
             );
             array_push($UserArr["body"], $e);
         }

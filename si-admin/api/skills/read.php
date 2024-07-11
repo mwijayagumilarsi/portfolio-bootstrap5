@@ -55,9 +55,9 @@ else {
                 "full_name" => $full_name,
                 "email" => $email,
                 "password" => $password,
-                "photo" => $photo,
                 "job" => $job,
                 "expected_position" => $expected_position,
+                "photo" => $photo,
             );
             array_push($UserArr["body"], $e);
         }

@@ -1,8 +1,8 @@
 <?php
-session_start();
-if (!isset($_SESSION['user'])) {
-    return header('Location: http://localhost/web-porto/si-admin/views/Login/' );
-}
+// session_start();
+// if (!isset($_SESSION['user'])) {
+//     return header('Location: http://localhost/web-porto/si-admin/views/Login/' );
+// }
 ?>
 <!doctype html>
 <html lang="en">
@@ -128,7 +128,7 @@ if (!isset($_SESSION['user'])) {
                 }
 
                 $.ajax({
-                    url:"http://localhost/web-porto/si-admin/api/users/create.php",
+                    url:"http://localhost/porto/si-admin/api/users/create.php",
                     method:"POST",
                     data: JSON.stringify(formData),
                     success:function(data){
@@ -154,7 +154,7 @@ if (!isset($_SESSION['user'])) {
                 }
 
                 $.ajax({
-                    url:"http://localhost/web-porto/si-admin/api/users/update.php",
+                    url:"http://localhost/porto/si-admin/api/users/update.php",
                     method:"PUT",
                     data: JSON.stringify(formData),
                     success:function(data){
@@ -176,7 +176,7 @@ if (!isset($_SESSION['user'])) {
         $.ajax({
             type: "GET",
             contentType: "application/json",
-            url:"http://localhost/web-porto/si-admin/api/users/read.php",
+            url:"http://localhost/porto/si-admin/api/users/read.php",
             success: function(response) {
             // console.log(response);
                 var json = response.body;
@@ -221,7 +221,7 @@ if (!isset($_SESSION['user'])) {
             type: "GET",
             contentType: "application/json",
             url:
-            "http://localhost/web-porto/si-admin/api/users/read.php?id="+id,
+            "http://localhost/porto/si-admin/api/users/read.php?id="+id,
             success: function(response) {
                 $('#id').val(response.id);
                 $('#full_name').val(response.full_name);
@@ -240,7 +240,7 @@ if (!isset($_SESSION['user'])) {
     function deleteOne(id) {
         alert('Yakin untuk hapus data ?');
         $.ajax({
-            url:"http://localhost:81/konterku/api/user/delete.php",
+            url:"http://localhost/porto/si-admin/api/user/delete.php",
             method:"DELETE",
             data: JSON.stringify({"id" : id}),
             success:function(data){
