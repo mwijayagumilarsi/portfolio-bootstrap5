@@ -97,7 +97,7 @@
         showAll();
 
         $('#add_data').click(function(){
-            $('#dynamic_modal_title').text('Add Biodata User');
+            $('#dynamic_modal_title').text('Add Skill User');
             $('#sample_form')[0].reset();
             $('#action').val('Add');
             $('#action_button').text('Add');
@@ -159,44 +159,64 @@
     });
 
     function showAll() {
-        $.ajax({
-            type: "GET",
-            contentType: "application/json",
-            url:"http://localhost/porto/si-admin/api/skills/read.php",
-            success: function(response) {
-            // console.log(response);
-                var json = response.body;
-                var dataSet=[];
-                for (var i = 0; i < json.length; i++) {
-                    var sub_array = {
-                        'user_id' : json[i].user_id,
-                        'skill' : json[i].skill,
-                        'rating' : json[i].rating,
-                        'description' : json[i].description,
-                        'action' : '<button onclick="showOne('+json[i].id+')" class="btn btn-sm btn-warning">Edit</button>'+
-                        '<button onclick="deleteOne('+json[i].id+')" class="btn btn-sm btn-danger">Delete</button>'
-                    };
-                    dataSet.push(sub_array);
-                }
-                $('#sample_data').DataTable({
-                    data: dataSet,
-                    columns : [
-                        { data : "user_id" },
-                        { data : "skill" },
-                        { data : "rating" },
-                        { data : "description" },
-                        { data : "action" }
-                    ]
-                });
-            },
-            error: function(err) {
-                console.log(err);
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: "http://localhost/porto/si-admin/api/skills/read.php",
+        success: function(response) {
+            var json = response.body;
+            var dataSet = [];
+            var totalRating = 0;
+
+            for (var i = 0; i < json.length; i++) {
+                var sub_array = {
+                    'user_id': json[i].user_id,
+                    'skill': json[i].skill,
+                    'rating': json[i].rating,
+                    'description': json[i].description,
+                    'action': '<button onclick="showOne(' + json[i].id + ')" class="btn btn-sm btn-warning">Edit</button>' +
+                        '<button onclick="deleteOne(' + json[i].id + ')" class="btn btn-sm btn-danger">Delete</button>'
+                };
+                dataSet.push(sub_array);
+                totalRating += parseInt(json[i].rating); // Menambahkan rating ke totalRating
             }
-        });
-    }
+
+            // Menghitung rata-rata rating
+            var averageRating = totalRating / json.length;
+
+            // Menentukan lebar progress bar berdasarkan rata-rata rating
+            var progressBarWidth = averageRating + '%';
+
+            // Menyusun progress bar
+            var progressBar = '<div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="' + averageRating + '" aria-valuemin="0" aria-valuemax="100">' +
+                '<div class="progress-bar" style="width: ' + progressBarWidth + '">' + averageRating + '%</div>' +
+                '</div>';
+
+            // Memasukkan progress bar ke dalam elemen dengan id 'skill_progress'
+            $('#skill_progress').html(progressBar);
+
+            // Menginisialisasi tabel DataTable setelah mendapatkan data
+            $('#sample_data').DataTable({
+                data: dataSet,
+                columns: [
+                    { data: "user_id" },
+                    { data: "skill" },
+                    { data: "rating" },
+                    { data: "description" },
+                    { data: "action" }
+                ]
+            });
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
+}
+
+    
 
     function showOne(id) {
-        $('#dynamic_modal_title').text('Edit Biodata User');
+        $('#dynamic_modal_title').text('Edit Skill User');
         $('#sample_form')[0].reset();
         $('#action').val('Update');
         $('#action_button').text('Update');
