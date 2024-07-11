@@ -5,20 +5,18 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-AllowHeaders, Authorization, X-Requested-With");
 include_once '../../config/database.php';
-include_once '../../models/Users.php';
+include_once '../../models/Skills.php';
 $database = new Database();
 $db = $database->getConnection();
-$item = new Users($db);
+$item = new Skills($db);
 $data = json_decode(file_get_contents("php://input"));
 $item->id = $data->id;
 
     // User values
-    $item->full_name = $data->full_name;
-    $item->email = $data->email;
-    $item->password = $data->password;
-    $item->job = $data->job;
-    $item->photo = $data->photo;
-    $item->expected_position = $data->expected_position;
+    $item->user_id = $data->user_id;
+    $item->skill = $data->skill;
+    $item->rating = $data->rating;
+    $item->description = $data->description;
 
 if($item->updateUser()){
 echo json_encode(["message" => "User data updated."]);

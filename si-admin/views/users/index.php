@@ -26,21 +26,21 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col col-sm-9">USERS</div>
+                    <div class="col col-sm-9 ">USERS</div>
                     <div class="col col-sm-3">
                         <button type="button" id="add_data" class="btn btn-success btn-sm float-end">Add</button>
                     </div>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body text-center">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered" id="sample_data">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>Nama</th>
                                 <th>Email</th>
-                                <th>Roles</th>
-                                <th>Created At</th>
+                                <th>Pekerjaan</th>
+                                <th>Posisi Diinginkan</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label class="form-label">Full Name</label>
+                                <label class="form-label">Nama Lengkap</label>
                                 <input type="text" name="full_name" id="full_name" class="form-control" />
                                 <span id="full_name_error" class="text-danger"></span>
                             </div>
@@ -74,12 +74,12 @@
                                     <span id="password_error" class="text-danger"></span>
                                 </div>
                             <div class="mb-3">
-                                <label class="form-label">Job</label>
+                                <label class="form-label">Pekerjaan</label>
                                 <input type="text" name="job" id="job" class="form-control" />
                                 <span id="job_error" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Expected Position</label>
+                                <label class="form-label">Posisi Diinginkan</label>
                                 <input type="text" name="expected_position" id="expected_position" class="form-control" />
                                 <span id="expected_position_error" class="text-danger"></span>
                             </div>
@@ -240,7 +240,7 @@
     function deleteOne(id) {
         alert('Yakin untuk hapus data ?');
         $.ajax({
-            url:"http://localhost/porto/si-admin/api/user/delete.php",
+            url:"http://localhost/porto/si-admin/api/users/delete.php",
             method:"DELETE",
             data: JSON.stringify({"id" : id}),
             success:function(data){

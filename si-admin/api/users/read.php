@@ -21,7 +21,7 @@ if(isset($_GET['id'])){
         "id" => $item->id,
         "full_name" => $item->full_name,
         "email" => $item->email,
-        "password" => $item->password,,
+        "password" => $item->password,
         "job" => $item->job,
         "expected_position" => $item->expected_position,      
         "photo" => $item->photo
@@ -34,12 +34,12 @@ if(isset($_GET['id'])){
         echo json_encode("User not found.");
     }
 }
-else {
-    if (!isset($_SESSION['user'])) {
-        http_response_code(404);
-        echo json_encode("You are not log in.");
-        return false;
-    }
+    else {
+//     if (!isset($_SESSION['user'])) {
+//         http_response_code(404);
+//         echo json_encode("You are not log in.");
+//         return false;
+//     }
     
     $items = new Users($db);
     $stmt = $items->getUsers();

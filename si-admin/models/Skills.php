@@ -1,79 +1,66 @@
 <?php
-class Users{
+class Skills
+{
     // Connection
     private $conn;
     // Table
-    private $db_table = "users";
+    private $db_table = "skills";
     // Columns
     public $id;
-    public $full_name;
-    public $email;
-    public $password;
-    public $photo;
-    public $job;
-    public $expected_position;
+    public $user_id;
+    public $skill;
+    public $rating;
+    public $description;
     // Db connection
-    public function __construct($db){
+    public function __construct($db)
+    {
         $this->conn = $db;
     }
     // GET ALL
-    public function getUsers(){
-        $sqlQuery = "SELECT id, full_name, email, password, photo, job, expected_position FROM ". $this->db_table . "";
-        $stmt = $this->conn->prepare($sqlQuery); //untuk mengkoneksikan dan eksekusi query
-        $stmt->execute();
-        return $stmt;
-    }
-
-    // GET ALL
-    public function getTotalStudent(){
-        $sqlQuery = "SELECT count(id) as total_student FROM ". $this->db_table . " WHERE job = 'Student'";
+    public function getUsers()
+    {
+        $sqlQuery = "SELECT id, user_id, skill, rating, description FROM " . $this->db_table . "";
         $stmt = $this->conn->prepare($sqlQuery); //untuk mengkoneksikan dan eksekusi query
         $stmt->execute();
         return $stmt;
     }
     // CREATE
-    public function createUser(){
-        $sqlQuery = "INSERT INTO ". $this->db_table ."
+    public function createUser()
+    {
+        $sqlQuery = "INSERT INTO " . $this->db_table . "
         SET
-        full_name = :full_name,
-        email = :email,
-        password = :password,
-        photo = :photo,
-        job = :job,
-        expected_position = :expected_position";
+        user_id = :user_id,
+        skill        = :skill,
+        rating     = :rating,
+        description         = :description";
         $stmt = $this->conn->prepare($sqlQuery);
-            // sanitize untuk menghindari data eksekusi / inject apps
-            $this->full_name=htmlspecialchars(strip_tags($this->full_name));
-            $this->email=htmlspecialchars(strip_tags($this->email));
-            $this->password=htmlspecialchars(strip_tags($this->password));
-            $this->photo=htmlspecialchars(strip_tags($this->photo));
-            $this->job=htmlspecialchars(strip_tags($this->job));
-            $this->expected_position=htmlspecialchars(strip_tags($this->expected_position));
-            // bind data untuk mapping data
-            $stmt->bindParam(":full_name", $this->full_name);
-            $stmt->bindParam(":email", $this->email);
-            $stmt->bindParam(":password", $this->password);
-            $stmt->bindParam(":photo", $this->photo);
-            $stmt->bindParam(":job", $this->job);
-            $stmt->bindParam(":expected_position", $this->expected_position);
+        // sanitize
+        $this->user_id = htmlspecialchars(strip_tags($this->user_id));
+        $this->skill        = htmlspecialchars(strip_tags($this->skill));
+        $this->rating     = htmlspecialchars(strip_tags($this->rating));
+        $this->description         = htmlspecialchars(strip_tags($this->description));
+        // bind data
+        $stmt->bindParam(":user_id", $this->user_id);
+        $stmt->bindParam(":skill", $this->skill);
+        $stmt->bindParam(":rating", $this->rating);
+        $stmt->bindParam(":description", $this->description);
 
-        if($stmt->execute()){
+        if ($stmt->execute()) {
             return true;
         }
         return false;
     }
     // READ single
-    public function getSingleUser(){
+    public function getSingleUser()
+    {
         $sqlQuery = "SELECT
         id,
-        full_name,
-        email,
-        password,
-        photo,
-        job,
-        expected_position        
+        user_id,
+        skill,
+        rating,
+        description      
         FROM
-        ". $this->db_table ."
+        " . $this->db_table . "
         WHERE
         id = ?
         LIMIT 0,1";
@@ -81,102 +68,96 @@ class Users{
         $stmt->bindParam(1, $this->id);
         $stmt->execute();
         $dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
-        $this->full_name = $dataRow['full_name'];
-        $this->email = $dataRow['email'];
-        $this->password = $dataRow['password'];
-        $this->photo = $dataRow['photo'];
-        $this->job = $dataRow['job'];
-        $this->expected_position = $dataRow['expected_position'];
+        $this->user_id = $dataRow['user_id'];
+        $this->skill        = $dataRow['skill'];
+        $this->rating     = $dataRow['rating'];
+        $this->description         = $dataRow['description'];
     }
     // UPDATE
-    public function updateUser(){
+    public function updateUser()
+    {
         $sqlQuery = "UPDATE
-        ". $this->db_table ."
+        " . $this->db_table . "
         SET
-        full_name = :full_name,
-        email = :email,
-        password = :password,
-        photo = :photo,
-        job = :job,
-        expected_position = :expected_position
+        user_id           = :user_id,
+        skill        = :skill,
+        rating            = :rating,
+        description       = :description
         WHERE
         id = :id";
         $stmt = $this->conn->prepare($sqlQuery);
-        
-        $this->full_name=htmlspecialchars(strip_tags($this->full_name));
-        $this->email=htmlspecialchars(strip_tags($this->email));
-        $this->password=htmlspecialchars(strip_tags($this->password));
-        $this->photo=htmlspecialchars(strip_tags($this->photo));
-        $this->job=htmlspecialchars(strip_tags($this->job));
-        $this->expected_position=htmlspecialchars(strip_tags($this->expected_position));
-        $this->id=htmlspecialchars(strip_tags($this->id));
+
+        $this->user_id = htmlspecialchars(strip_tags($this->user_id));
+        $this->skill        = htmlspecialchars(strip_tags($this->skill));
+        $this->rating     = htmlspecialchars(strip_tags($this->rating));
+        $this->description         = htmlspecialchars(strip_tags($this->description));
+        $this->id           = htmlspecialchars(strip_tags($this->id));
         // bind data
-        $stmt->bindParam(":full_name", $this->full_name);
-        $stmt->bindParam(":email", $this->email);
-        $stmt->bindParam(":password", $this->password);
-        $stmt->bindParam(":photo", $this->photo);
-        $stmt->bindParam(":job", $this->job);
-        $stmt->bindParam(":expected_position", $this->expected_position);
+        $stmt->bindParam(":user_id", $this->user_id);
+        $stmt->bindParam(":skill", $this->skill);
+        $stmt->bindParam(":rating", $this->rating);
+        $stmt->bindParam(":description", $this->description);
         $stmt->bindParam(":id", $this->id);
         $stmt->fetchAll();
 
         try {
             $stmt->execute();
-        }
-        catch(PDOException $exception) {
+        } catch (PDOException $exception) {
             die($exception->getMessage());
         }
-        
+
         if (count($stmt->fetchAll()) == 0) {
             return true;
         }
     }
     // DELETE
-    function deleteUser(){
+    function deleteUser()
+    {
         $sqlQuery = "DELETE FROM " . $this->db_table . " WHERE id = ?";
         $stmt = $this->conn->prepare($sqlQuery);
-        $this->id=htmlspecialchars(strip_tags($this->id));
+        $this->id = htmlspecialchars(strip_tags($this->id));
         $stmt->bindParam(1, $this->id);
 
-        if($stmt->execute()){
+        if ($stmt->execute()) {
             return true;
         }
         return false;
     }
 
-    public function prosesLogin(){
-        $sqlQuery = "SELECT
-        id,
-        full_name,
-        email,
-        password,
-        photo,
-        job,
-        expected_position         
-        FROM
-        ". $this->db_table ."
-        WHERE
-        email = :email AND
-        password = :password
-        LIMIT 0,1";
-        $stmt = $this->conn->prepare($sqlQuery);
-        $stmt->bindParam(":email", $this->email);
-        $stmt->bindParam(":password", $this->password);
-        $stmt->execute();
-        $dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-        if(!empty($dataRow)){
-            return $dataRow;
-        }else{
-            return false;
-        }
-    }
+    // public function prosesLogin()
+    // {
+    //     $sqlQuery = "SELECT
+    //     id,
+    //     user_id,
+    //     email,
+    //     password,
+    //     foto,
+    //     pekerjaan,
+    //     posisi 
+    //     FROM
+    //     " . $this->db_table . "
+    //     WHERE
+    //     email = :email AND
+    //     password = :password
+    //     LIMIT 0,1";
+    //     $stmt = $this->conn->prepare($sqlQuery);
+    //     $stmt->bindParam(":email", $this->email);
+    //     $stmt->bindParam(":password", $this->password);
+    //     $stmt->execute();
+    //     $dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    public function prosesLogout(){    
-        session_start();
-        session_unset();
-        session_destroy();
-        return true;
-    }
+    //     if (!empty($dataRow)) {
+    //         return $dataRow;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
+    //     public function prosesLogout()
+    //     {
+    //         session_start();
+    //         session_unset();
+    //         session_destroy();
+    //         return true;
+    //     }
 }
-?>
