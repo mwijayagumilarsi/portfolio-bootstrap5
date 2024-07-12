@@ -9,20 +9,34 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Users - Skills</title>
+    <title>SKILL | PENGGUNA</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <style>
+      .fixed-top-right {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000; /* Assure it's above other content */
+      }
+      .fixed-top-left {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000; /* Assure it's above other content */
+      }
+    </style>
   </head>
   <body>
     <div class="container">
         <div id="message">
         </div>
-        <h1 class="mt-4 mb-4 text-center text-danger">SKILLS
-        CRUD</h1>
+        <h1 class="mt-4 mb-4 text-center text-danger">CRUD SKILL PENGGUNA
+        </h1>
         <div class="card">
             <div class="card-header">
                 <div class="row">
@@ -65,8 +79,8 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Skill</label>
-                                <input type="skill" name="skill" id="skill" class="form-control" />
-                                <span id="skill_error" class="text-danger"></span>
+                                <input type="skill" name="skill_name" id="skill_name" class="form-control" />
+                                <span id="skill_name_error" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Rating</label>
@@ -90,8 +104,8 @@
             </div>
         </div>
     </div>
-    
-    
+    <a href="https://mwijayagumilar.amisbudi.cloud/porto/si-admin/views/users/" class="btn btn-success fixed-top-right">Halaman User</a>
+    <a href="https://mwijayagumilar.amisbudi.cloud/porto/index.html#" class="btn btn-primary fixed-top-left">Log Out</a>
     <script>
     $(document).ready(function() {
         showAll();
@@ -110,13 +124,13 @@
             if($('#action').val() == "Add"){
                 var formData = {
                 'user_id' : $('#user_id').val(),
-                'skill' : $('#skill').val(),
+                'skill_name' : $('#skill_name').val(),
                 'rating' : $('#rating').val(),
                 'description' : $('#description').val(),
                 }
 
                 $.ajax({
-                    url:"http://localhost/porto/si-admin/api/skills/create.php",
+                    url:"https://mwijayagumilar.amisbudi.cloud/porto/si-admin/api/skills/create.php",
                     method:"POST",
                     data: JSON.stringify(formData),
                     success:function(data){
@@ -134,13 +148,13 @@
                 var formData = {
                     'id' : $('#id').val(),
                     'user_id' : $('#user_id').val(),
-                    'skill' : $('#skill').val(),
+                    'skill_name' : $('#skill_name').val(),
                     'rating' : $('#rating').val(),
                     'description' : $('#description').val(),
                 }
 
                 $.ajax({
-                    url:"http://localhost/porto/si-admin/api/skills/update.php",
+                    url:"https://mwijayagumilar.amisbudi.cloud/porto/si-admin/api/skills/update.php",
                     method:"PUT",
                     data: JSON.stringify(formData),
                     success:function(data){
@@ -162,7 +176,7 @@
     $.ajax({
         type: "GET",
         contentType: "application/json",
-        url: "http://localhost/porto/si-admin/api/skills/read.php",
+        url: "https://mwijayagumilar.amisbudi.cloud/porto/si-admin/api/skills/read.php",
         success: function(response) {
             var json = response.body;
             var dataSet = [];
@@ -171,7 +185,7 @@
             for (var i = 0; i < json.length; i++) {
                 var sub_array = {
                     'user_id': json[i].user_id,
-                    'skill': json[i].skill,
+                    'skill_name': json[i].skill_name,
                     'rating': json[i].rating,
                     'description': json[i].description,
                     'action': '<button onclick="showOne(' + json[i].id + ')" class="btn btn-sm btn-warning">Edit</button>' +
@@ -200,7 +214,7 @@
                 data: dataSet,
                 columns: [
                     { data: "user_id" },
-                    { data: "skill" },
+                    { data: "skill_name" },
                     { data: "rating" },
                     { data: "description" },
                     { data: "action" }
@@ -227,11 +241,11 @@
             type: "GET",
             contentType: "application/json",
             url:
-            "http://localhost/porto/si-admin/api/skills/read.php?id="+id,
+            "https://mwijayagumilar.amisbudi.cloud/porto/si-admin/api/skills/read.php?id="+id,
             success: function(response) {
                 $('#id').val(response.id);
                 $('#user_id').val(response.user_id);
-                $('#skill').val(response.skill);
+                $('#skill_name').val(response.skill_name);
                 $('#rating').val(response.rating);
                 $('#description').val(response.description);
             },
@@ -244,7 +258,7 @@
     function deleteOne(id) {
         alert('Yakin untuk hapus data ?');
         $.ajax({
-            url:"http://localhost/porto/si-admin/api/skills/delete.php",
+            url:"https://mwijayagumilar.amisbudi.cloud/porto/si-admin/api/skills/delete.php",
             method:"DELETE",
             data: JSON.stringify({"id" : id}),
             success:function(data){

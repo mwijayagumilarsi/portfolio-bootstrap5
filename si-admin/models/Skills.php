@@ -8,7 +8,7 @@ class Skills
     // Columns
     public $id;
     public $user_id;
-    public $skill;
+    public $skill_name;
     public $rating;
     public $description;
     // Db connection
@@ -19,7 +19,7 @@ class Skills
     // GET ALL
     public function getUsers()
     {
-        $sqlQuery = "SELECT id, user_id, skill, rating, description FROM " . $this->db_table . "";
+        $sqlQuery = "SELECT id, user_id, skill_name, rating, description FROM " . $this->db_table . "";
         $stmt = $this->conn->prepare($sqlQuery); //untuk mengkoneksikan dan eksekusi query
         $stmt->execute();
         return $stmt;
@@ -30,18 +30,18 @@ class Skills
         $sqlQuery = "INSERT INTO " . $this->db_table . "
         SET
         user_id = :user_id,
-        skill        = :skill,
+        skill_name        = :skill_name,
         rating     = :rating,
         description         = :description";
         $stmt = $this->conn->prepare($sqlQuery);
         // sanitize
         $this->user_id = htmlspecialchars(strip_tags($this->user_id));
-        $this->skill        = htmlspecialchars(strip_tags($this->skill));
+        $this->skill_name        = htmlspecialchars(strip_tags($this->skill_name));
         $this->rating     = htmlspecialchars(strip_tags($this->rating));
         $this->description         = htmlspecialchars(strip_tags($this->description));
         // bind data
         $stmt->bindParam(":user_id", $this->user_id);
-        $stmt->bindParam(":skill", $this->skill);
+        $stmt->bindParam(":skill_name", $this->skill_name);
         $stmt->bindParam(":rating", $this->rating);
         $stmt->bindParam(":description", $this->description);
 
@@ -56,7 +56,7 @@ class Skills
         $sqlQuery = "SELECT
         id,
         user_id,
-        skill,
+        skill_name,
         rating,
         description      
         FROM
@@ -69,7 +69,7 @@ class Skills
         $stmt->execute();
         $dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
         $this->user_id = $dataRow['user_id'];
-        $this->skill        = $dataRow['skill'];
+        $this->skill_name        = $dataRow['skill_name'];
         $this->rating     = $dataRow['rating'];
         $this->description         = $dataRow['description'];
     }
@@ -80,7 +80,7 @@ class Skills
         " . $this->db_table . "
         SET
         user_id           = :user_id,
-        skill        = :skill,
+        skill_name        = :skill_name,
         rating            = :rating,
         description       = :description
         WHERE
@@ -88,13 +88,13 @@ class Skills
         $stmt = $this->conn->prepare($sqlQuery);
 
         $this->user_id = htmlspecialchars(strip_tags($this->user_id));
-        $this->skill        = htmlspecialchars(strip_tags($this->skill));
+        $this->skill_name        = htmlspecialchars(strip_tags($this->skill_name));
         $this->rating     = htmlspecialchars(strip_tags($this->rating));
         $this->description         = htmlspecialchars(strip_tags($this->description));
         $this->id           = htmlspecialchars(strip_tags($this->id));
         // bind data
         $stmt->bindParam(":user_id", $this->user_id);
-        $stmt->bindParam(":skill", $this->skill);
+        $stmt->bindParam(":skill_name", $this->skill_name);
         $stmt->bindParam(":rating", $this->rating);
         $stmt->bindParam(":description", $this->description);
         $stmt->bindParam(":id", $this->id);

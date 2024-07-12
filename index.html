@@ -8,17 +8,19 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <!-- AOS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Bootstrap CSS -->
+    <link href="path/to/bootstrap.min.css" rel="stylesheet">
     <!-- Mycss -->
     <link rel="stylesheet" href="style.css" />
     <!-- DataTables CSS -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
-    <title>Portofolioku | M Wijaya Gumilar</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+    <title >Portofolioku | M Wijaya Gumilar</title>
   </head>
   <body id="home">
     <!--navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark shadow-sm bg-success fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#"><i class="bi bi-person-vcard-fill"></i> M Wijaya Gumilar</a>
+        <a class="navbar-brand fs-5 fw-bold" href="#" ><i class="bi bi-person-vcard-fill"></i> M Wijaya Gumilar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,19 +35,14 @@
             <li class="nav-item">
               <a class="nav-link" href="#services">Bidang Keahlian</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#dropdown1">Dropdown 1</a></li>
-                <li><a class="dropdown-item" href="#dropdown2">Dropdown 2</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#dropdown3">Dropdown 3</a></li>
-              </ul>
-            </li>
             <li class="nav-item">
               <a class="nav-link" href="#contact">Kontak</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#alamat">Alamat</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://mwijayagumilar.amisbudi.cloud/porto/si-admin/views/Login/" >Login</a>
             </li>
           </ul>
         </div>
@@ -55,8 +52,8 @@
     <!--jumbotron-->
     <section class="jumbotron text-center">
       <img src="img/K.jpg" alt="Wijaya gumilar" width="270" class="rounded-circle img-thumbnail" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1000" />
-      <h1 class="display-4" data-aos="flip-down" data-aos-duration="3000">Muhammad Wijaya Gumilar</h1>
-      <p class="lead" data-aos="flip-up" data-aos-duration="3000">Web designer | Programmer</p>
+      <h1 class="display-4 " data-aos="flip-down" data-aos-duration="3000">Muhammad Wijaya Gumilar</h1>
+      <p class="lead " data-aos="flip-up" data-aos-duration="3000">Web designer | Programmer</p>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path fill="#ffffff" fill-opacity="1" d="M0,96L205.7,192L411.4,224L617.1,64L822.9,96L1028.6,96L1234.3,224L1440,64L1440,320L1234.3,320L1028.6,320L822.9,320L617.1,320L411.4,320L205.7,320L0,320Z"></path>
       </svg>
@@ -67,7 +64,7 @@
       <div class="container">
         <div class="row text-center mb-3 mt-4 " >
           <div class="col">
-            <h2><i class="bi bi-person-fill text-success" ></i> Tentang Saya</h2>
+            <h2 style="margin-bottom: 30px;"><i class="bi bi-person-fill text-success" ></i> Tentang Saya</h2>
           </div>
         </div>
         <div class="row justify-content-center ">
@@ -97,11 +94,11 @@
     <section id="services">
       <div class="container">
         <div class="row text-center mb-4">
-          <div class="col data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500"">
-            <h2><i class="bi bi-person-workspace text-success" ></i> Bidang Keahlian Saya</h2>
+          <div class="col data-aos="fade-down data-aos-easing="linear" data-aos-duration="1500">
+            <h2 style="margin-bottom: 50px;"><i class="bi bi-person-workspace text-success" ></i> Bidang Keahlian Saya</h2>
           </div>
         </div>
-        <div class="container " data-aos="fade-up" data-aos-duration="3000">
+        <div class="container " data-aos="fade-up" data-aos-duration="1500">
           <div class="row justify-content-center fs-6 text-center"  id="skill_data">
             <!-- Data Skills akan dimasukkan di sini -->
           </div>
@@ -122,7 +119,7 @@
       <div class="container" >
         <div class="row text-center mb-4">
           <div class="col">
-            <h2><i class="bi bi-telephone-fill text-success"></i> Kontak Saya</h2>
+            <h2 style="margin-bottom: 30px;"><i class="bi bi-telephone-fill text-success"></i> Kontak Saya</h2>
           </div>
         </div>
         <div class="row justify-content-center mb-3" data-aos="zoom-out-down" data-aos-duration="1500">
@@ -147,7 +144,17 @@
           </div>
         </div>
       </div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#198754" fill-opacity="1" d="M0,160L288,128L576,160L864,32L1152,128L1440,64L1440,320L1152,320L864,320L576,320L288,320L0,320Z"></path></svg>
+    </section>
+    <section id="alamat">
+      <div class="container" >
+        <div class="row text-center mb-4">
+          <div class="col">
+            <h2 style="margin-bottom: 50px; margin-top: 30px;"><i class="bi bi bi-geo-alt text-success"></i> Alamat</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3958.3120898337265!2d108.35587307499922!3d-7.205190992800376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zN8KwMTInMTguNyJTIDEwOMKwMjEnMzAuNCJF!5e0!3m2!1sen!2sid!4v1720748545738!5m2!1sen!2sid" width="1000" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-aos="zoom-out-up" data-aos-duration="1500"></iframe>
+          </div>
+        </div>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="margin-top: 50px;"><path fill="#198754" fill-opacity="1" d="M0,160L288,128L576,160L864,32L1152,128L1440,64L1440,320L1152,320L864,320L576,320L288,320L0,320Z"></path></svg>
     </section>
     <!-- akhircontact -->
     <!-- footer -->
@@ -159,9 +166,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="path/to/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-4cZRAX4fFGrD7sOXLkRkB81Y3TEfGCIf9KvoF8+8wbhhG2qgd/WF6Jcp0MDdhXll" crossorigin="anonymous"></script>
     <script>
       AOS.init();
       
@@ -170,44 +178,45 @@
     showSkills();
 
     function showSkills() {
-      $.ajax({
-        url: 'http://localhost/porto/si-admin/api/skills/read.php', // Ganti dengan URL API Anda
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-          var skillsData = data.body;
-          var skillCount = data.itemCount;
-          var skillHTML = '';
+  $.ajax({
+    url: 'https://mwijayagumilar.amisbudi.cloud/porto/si-admin/api/skills/read.php', // Ganti dengan URL API Anda
+    type: 'GET',
+    dataType: 'json',
+    success: function(data) {
+      var skillsData = data.body;
+      var skillCount = data.itemCount;
+      var skillHTML = '';
 
-          // Loop through skills data
-          for (var i = 0; i < skillCount; i++) {
-            var skill = skillsData[i];
-            var progressBarHTML = '<div class="progress-bar" role="progressbar" style="width: ' + skill.rating + '%" aria-valuenow="' + skill.rating + '" aria-valuemin="0" aria-valuemax="100">' + skill.rating + '%</div>';
+      // Loop through skills data
+      for (var i = 0; i < skillCount; i++) {
+        var skill = skillsData[i];
+        var progressBarHTML = '<div class="progress-bar" role="progressbar" style="width: ' + skill.rating + '%" aria-valuenow="' + skill.rating + '" aria-valuemin="0" aria-valuemax="100">' + skill.rating + '%</div>';
 
-            skillHTML += '<div class="col-md-4 mb-4">';
-            skillHTML += '<div class="card">';
-            skillHTML += '<div class="card-body">';
-            skillHTML += '<h6 class="card-title">' + skill.skill + '</h6>';
-            skillHTML += '</div>';
-            skillHTML += '</div>';
-            skillHTML += '</div>';
+        skillHTML += '<div class="col-md-4 mb-4">';
+        skillHTML += '<div class="card">';
+        skillHTML += '<div class="card-body">';
+        skillHTML += '<h6 class="card-title">' + skill.skill_name + '</h6>'; // Menggunakan skill_name sesuai perubahan
+        skillHTML += '</div>';
+        skillHTML += '</div>';
+        skillHTML += '</div>';
 
-            // Tambahkan progress bar ke dalam skillHTML
-            skillHTML += '<div class="col-md-6 mb-4">';
-            skillHTML += '<div class="progress mt-2">';
-            skillHTML += progressBarHTML;
-            skillHTML += '</div>';
-            skillHTML += '</div>';
-          }
+        // Tambahkan progress bar ke dalam skillHTML
+        skillHTML += '<div class="col-md-6 mb-4">';
+        skillHTML += '<div class="progress mt-2">';
+        skillHTML += progressBarHTML;
+        skillHTML += '</div>';
+        skillHTML += '</div>';
+      }
 
-          // Masukkan skillHTML ke dalam elemen dengan id 'skill_data'
-          $('#skill_data').html(skillHTML);
-        },
-        error: function(xhr, status, error) {
-          console.error('Failed to fetch skills:', error);
-        }
-      });
+      // Masukkan skillHTML ke dalam elemen dengan id 'skill_data'
+      $('#skill_data').html(skillHTML);
+    },
+    error: function(xhr, status, error) {
+      console.error('Failed to fetch skills:', error);
     }
+  });
+}
+
   });
 </script>
     </script>

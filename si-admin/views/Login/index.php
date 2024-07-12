@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Selamat Datang</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <style>
         .login-container {
@@ -14,6 +15,12 @@
             border-radius: 10px;
             box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
         }
+        .fixed-top-left {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000; /* Assure it's above other content */
+      }
     </style>
 </head>
 
@@ -35,7 +42,7 @@
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary">
-                                <i class="bi bi-box-arrow-in-right"></i> Sign In
+                                <i class="bi bi-box-arrow-in-right"></i> Masuk
                             </button>
                         </div>
                     </form>
@@ -43,7 +50,7 @@
             </div>
         </div>
     </div>
-
+    <a href="https://mwijayagumilar.amisbudi.cloud/porto/index.html#" class="btn btn-primary fixed-top-left">Kembali</a>
     <script>
         $(document).ready(function() {
             $('#sample_form').on('submit', function(event) {
@@ -53,12 +60,12 @@
                     'password': $('#password').val()
                 }
                 $.ajax({
-                    url: "http://localhost/web-porto/si-admin/api/auth/login.php",
+                    url: "https://mwijayagumilar.amisbudi.cloud/porto/si-admin/api/auth/login.php",
                     method: "POST",
                     data: JSON.stringify(formData),
                     success: function(data) {
                         $('#action_button').attr('disabled', false);
-                        window.location.href = 'http://localhost/web-porto/si-admin/views/users/';
+                        window.location.href = 'https://mwijayagumilar.amisbudi.cloud/porto/si-admin/views/users/';
                     },
                     error: function(err) {
                         console.log(err);

@@ -14,7 +14,7 @@ $item->id = $data->id;
 
     // User values
     $item->user_id = $data->user_id;
-    $item->skill = $data->skill;
+    $item->skill_name = $data->skill_name;
     $item->rating = $data->rating;
     $item->description = $data->description;
 

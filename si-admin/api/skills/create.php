@@ -11,7 +11,7 @@
     $item = new Skills($db);
     $data = json_decode(file_get_contents("php://input"));
     $item->user_id = $data->user_id;
-    $item->skill = $data->skill;
+    $item->skill_name = $data->skill_name;
     $item->rating = $data->rating;
     $item->description = $data->description;
     if($item->createUser()){

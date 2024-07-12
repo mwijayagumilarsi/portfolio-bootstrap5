@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
         $emp_arr = array(
             "id"           => $item->id,
             "user_id" => $item->user_id,
-            "skill"        => $item->skill,
+            "skill_name"        => $item->skill_name,
             "rating"     => $item->rating,
             "description"         => $item->description,
         );
@@ -47,7 +47,7 @@ if (isset($_GET['id'])) {
             $e = array(
                 "id"           => $id,
                 "user_id" => $user_id,
-                "skill"        => $skill,
+                "skill_name"        => $skill_name,
                 "rating"     => $rating,
                 "description"         => $description,
             );

@@ -1,7 +1,7 @@
 <?php
 // session_start();
 // if (!isset($_SESSION['user'])) {
-//     return header('Location: http://localhost/web-porto/si-admin/views/Login/' );
+//     return header('Location: http://localhost/porto/si-admin/views/Login/' );
 // }
 ?>
 <!doctype html>
@@ -9,13 +9,27 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Users - Portofolio</title>
+    <title>Users - Web Porto</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <style>
+      .fixed-top-right {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000; /* Assure it's above other content */
+      }
+      .fixed-top-left {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000; /* Assure it's above other content */
+      }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -26,21 +40,21 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col col-sm-9 ">USERS</div>
+                    <div class="col col-sm-9">USERS</div>
                     <div class="col col-sm-3">
                         <button type="button" id="add_data" class="btn btn-success btn-sm float-end">Add</button>
                     </div>
                 </div>
             </div>
-            <div class="card-body text-center">
+            <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered" id="sample_data">
                         <thead>
                             <tr>
-                                <th>Nama</th>
+                                <th>Name</th>
                                 <th>Email</th>
-                                <th>Pekerjaan</th>
-                                <th>Posisi Diinginkan</th>
+                                <th>Roles</th>
+                                <th>Created At</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -59,7 +73,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label class="form-label">Nama Lengkap</label>
+                                <label class="form-label">Full Name</label>
                                 <input type="text" name="full_name" id="full_name" class="form-control" />
                                 <span id="full_name_error" class="text-danger"></span>
                             </div>
@@ -74,12 +88,12 @@
                                     <span id="password_error" class="text-danger"></span>
                                 </div>
                             <div class="mb-3">
-                                <label class="form-label">Pekerjaan</label>
+                                <label class="form-label">Job</label>
                                 <input type="text" name="job" id="job" class="form-control" />
                                 <span id="job_error" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Posisi Diinginkan</label>
+                                <label class="form-label">Expected Position</label>
                                 <input type="text" name="expected_position" id="expected_position" class="form-control" />
                                 <span id="expected_position_error" class="text-danger"></span>
                             </div>
@@ -100,7 +114,9 @@
             </div>
         </div>
     </div>
-    
+    <a href="https://mwijayagumilar.amisbudi.cloud/porto/si-admin/views/skills/" class="btn btn-success fixed-top-right">Halaman Skill</a>
+    <a href="https://mwijayagumilar.amisbudi.cloud/porto/index.html#" class="btn btn-primary fixed-top-left">Log Out</a>
+
     
     <script>
     $(document).ready(function() {
@@ -128,7 +144,7 @@
                 }
 
                 $.ajax({
-                    url:"http://localhost/porto/si-admin/api/users/create.php",
+                    url:"https://mwijayagumilar.amisbudi.cloud/porto/si-admin/api/users/create.php",
                     method:"POST",
                     data: JSON.stringify(formData),
                     success:function(data){
@@ -154,7 +170,7 @@
                 }
 
                 $.ajax({
-                    url:"http://localhost/porto/si-admin/api/users/update.php",
+                    url:"https://mwijayagumilar.amisbudi.cloud/porto/si-admin/api/users/update.php",
                     method:"PUT",
                     data: JSON.stringify(formData),
                     success:function(data){
@@ -176,7 +192,7 @@
         $.ajax({
             type: "GET",
             contentType: "application/json",
-            url:"http://localhost/porto/si-admin/api/users/read.php",
+            url:"https://mwijayagumilar.amisbudi.cloud/porto/si-admin/api/users/read.php",
             success: function(response) {
             // console.log(response);
                 var json = response.body;
@@ -221,7 +237,7 @@
             type: "GET",
             contentType: "application/json",
             url:
-            "http://localhost/porto/si-admin/api/users/read.php?id="+id,
+            "https://mwijayagumilar.amisbudi.cloud/porto/si-admin/api/users/read.php?id="+id,
             success: function(response) {
                 $('#id').val(response.id);
                 $('#full_name').val(response.full_name);
@@ -240,7 +256,7 @@
     function deleteOne(id) {
         alert('Yakin untuk hapus data ?');
         $.ajax({
-            url:"http://localhost/porto/si-admin/api/users/delete.php",
+            url:"https://mwijayagumilar.amisbudi.cloud/porto/si-admin/api/users/delete.php",
             method:"DELETE",
             data: JSON.stringify({"id" : id}),
             success:function(data){
